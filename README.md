@@ -1,3 +1,3 @@
-# Ejercicios y Trabajos Prácticos de Circuitos Electrónicos [86.06]
+Ejercicios y Trabajos Prácticos de Circuitos Electrónicos [86.06]
 
-## 2023-2C  FIUBA
+2023-2C  FIUBA
