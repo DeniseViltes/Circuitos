@@ -3,12 +3,11 @@ from TBJ.HibridoPi import HibridoPi
 
 class EmisorComun:
     """Clase que crea con algunas funciones basicas de un emisor comun
-    el cual se inicializa con Re acoplado.
-    Además crea un modelo hibrido pi el cual se inicializa con Va=100"""
-    Va = 100
+    el cual se inicializa con Re acoplado."""
 
-    def __init__(self, Re, Icq, beta):
+    def __init__(self, Re, Icq, beta,VA):
         self.emisor_acoplado = True
+        self.Va = VA
         self.hibrido = HibridoPi(beta, self.Va, Icq)
         self.Re = Re
 

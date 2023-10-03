@@ -15,10 +15,10 @@ Vcc = 12
 
 Re = Re1 + Re2
 
-B = [200, 374, 490]
+B = [200, 290, 490]
 Vt = 25.9 * 10 ** (-3)
 Btyp = B[1]
-VA = 100
+VA = 62.8
 
 # Thevenin
 Th = thevenin_divisor_de_tension(Vcc, Rb2, Rb1)
@@ -31,19 +31,20 @@ Rb = Th[1]
 Vbe = 0.7  # MAD
 Ve = Vbb - Vbe
 Icq = Ve / Re
-Vceq = Vcc - Icq * Rc
-Ib = 0
-for i in range(20):
-    Ib = Icq / Btyp
-    Vrb = Rb * Ib
-    Vb = Vbb - Vrb
-    Ve = Vb - Vbe
-    Icq = Ve / Re
+Vc = Vcc - Icq * Rc
+Ib = Icq / Btyp
+Vceq= Vc-Ve
+# for i in range(20):
+#     Vrb = Rb * Ib
+#     Vb = Vbb - Vrb
+#     Ve = Vb - Vbe
+#     Icq = Ve / Re
+#     Ib = Icq / Btyp
 
 # --------------------------------Análisis de señal --------------------------------
 
 
-EC = ec.EmisorComun(Re1, Icq,Btyp)
+EC = ec.EmisorComun(Re1, Icq,Btyp,VA)
 EC.sinAcople()
 Rib = EC.Rib()
 Roc = EC.Roc()
@@ -53,7 +54,7 @@ Ro = paralelo(Roc, Rc)
 
 Av = EC.av(Ro)
 
-print('Configuración : Re con cap')
+print('Configuración : Re sin cap')
 print('Rb1 = ', Rb1 * 10 ** -3, 'K ohms')
 print('Rb2 = ', Rb2 * 10 ** -3, 'K ohms')
 print('Vbb = ', Vbb, 'V', 'Rb = ', Rb * 10 ** -3, 'K ohms')
@@ -63,9 +64,12 @@ print('Re = ', Re, 'ohms')
 
 print('Polarización')
 print('Punto Q = (', Vceq, 'V;', Icq * 10 ** 3, 'mA)')
+print('Ve=', Ve, ', Vc=', Vc)
 print('Ib = ', Ib*10**6, 'uA')
 print('Circuito de señal')
+print('Va = ',VA,'V')
 print('Ri = ', Ri)
+print('Roc = ', Roc)
 print('Ro = ', Ro)
 print('Av = ', Av)
 print('Avs = ', EC.avs(0, Ro))

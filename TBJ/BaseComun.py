@@ -1,4 +1,5 @@
 from TBJ.HibridoPi import HibridoPi
+from funciones_basicas_circuitos import *
 
 
 class BaseComun:
@@ -34,6 +35,4 @@ class BaseComun:
     def gananciaAvs(self,  Rs,Rca):
         # ri es aprox rie
         return self.Rie()/(self.Rie() +Rs)*self.gananciaAv(Rca)
-def paralelo(R1, R2):
-    """Paralelo entre dos resistencias"""
-    return (R2 * R1) / (R1 + R2)
+
