@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 plt.rcParams['text.usetex'] = True
-plt.rcParams['figure.constrained_layout.use'] = True
+
 
 l = ltspice.Ltspice(os.path.dirname(__file__)+'/TL2_A.raw')
 l.parse()
@@ -26,14 +26,14 @@ magn_m = datos_simul[:, 1]
 
 fl = 10
 fh = 9*10**6
-fhm = 300000
+fhm = 1300000
 
 hmax = 19.5
 
-fig, ax1 = plt.subplots(layout="constrained")
+fig, ax1 = plt.subplots( )
 plt.grid(True)
 xticks = [10**1,10**3, 10**5,fhm,10**7,10**9]
-xlabels = [r'$10^1$',r'$10^3$',r'$10^5$',r'$3\;10^6$',r'$10^7$',r'$10^9$']
+xlabels = [r'$10^1$',r'$10^3$',r'$10^5$',r'$1.3\cdot 10^6$',r'$10^7$',r'$10^9$']
 ax1.set_xlabel('Frecuencia [Hz]')
 ax1.set_ylabel('Ganancia [dB]', color='tab:red')
 plot_1 = ax1.plot(freq, Vout_amplitude,linestyle = '-', color='tab:red', label = 'Magnitud simulada')
